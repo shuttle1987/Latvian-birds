@@ -26,22 +26,4 @@ jobs:
     - name: Add nojekyll
       run: |
         touch ./output/.nojekyll
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4.5.0
-      with:
-        branch: deploy
-        folder: output
-      if: success()
-      env:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-        BASE_BRANCH: source # The branch the action should deploy from.
-        BRANCH: deploy # The branch the action should deploy to.
-        CNAME: shuttle1987.github.io
-        FOLDER: output # The folder the action should deploy.
-#         BUILD_SCRIPT: npm install && npm run-script build # The build script the action should run prior to deploying.
-#     - name: GitHub Pages Deploy
-#       if: success()
-#       uses: maxheld83/ghpages@v0.2.1
-#       env: 
-#         BUILD_DIR: output
-#         GH_PAT: ${{ secrets.GH_PAT }}
+
