@@ -1,6 +1,6 @@
 AUTHOR = 'Emil'
 SITENAME = 'Birds of Latvia'
-SITEURL = ""
+SITEURL = "https://birdsoflatvia.com"
 
 PATH = "content"
 
