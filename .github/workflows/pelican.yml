@@ -35,7 +35,7 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BASE_BRANCH: source # The branch the action should deploy from.
-        BRANCH: main # The branch the action should deploy to.
+        BRANCH: deploy # The branch the action should deploy to.
         CNAME: shuttle1987.github.io
         FOLDER: output # The folder the action should deploy.
 #         BUILD_SCRIPT: npm install && npm run-script build # The build script the action should run prior to deploying.
