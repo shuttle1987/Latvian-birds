@@ -21,6 +21,7 @@ jobs:
       run: uv sync -p 3.13
     - name: Build the prod site
       run: |
+        source .venv/bin/activate
         make publish
     - name: Add nojekyll
       run: |
