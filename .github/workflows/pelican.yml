@@ -26,6 +26,10 @@ jobs:
     - name: Add nojekyll
       run: |
         touch ./output/.nojekyll
+    - uses: actions/upload-artifact@v4
+      with:
+        name: output-website
+        path: ./output/ # or path/to/artifact
 
   deploy:
     if: github.ref == 'refs/heads/main'
