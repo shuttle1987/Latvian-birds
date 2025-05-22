@@ -1,0 +1,45 @@
+name: Pelican Builder
+
+on:
+  push:
+    branches:
+      - source
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.12.2
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Build the prod site
+      run: |
+        make publish
+    - name: Add nojekyll
+      run: |
+        touch ./output/.nojekyll
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4.5.0
+      with:
+        branch: main
+        folder: output
+      if: success()
+      env:
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        BASE_BRANCH: source # The branch the action should deploy from.
+        BRANCH: main # The branch the action should deploy to.
+        CNAME: shuttle1987.github.io
+        FOLDER: output # The folder the action should deploy.
+#         BUILD_SCRIPT: npm install && npm run-script build # The build script the action should run prior to deploying.
+#     - name: GitHub Pages Deploy
+#       if: success()
+#       uses: maxheld83/ghpages@v0.2.1
+#       env: 
+#         BUILD_DIR: output
+#         GH_PAT: ${{ secrets.GH_PAT }}
